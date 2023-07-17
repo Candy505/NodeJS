@@ -1,0 +1,9 @@
+built-in methods
+http methods
+file methods readfilesync, writefilesync
+Async, sync
+promises,await
+events
+event user driven
+EventEmitter, on() and emit()
+streams

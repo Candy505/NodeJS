@@ -1,4 +1,16 @@
-const http = require('http')
+const EventEmitter = require('events')
+const customEmitter = new EventEmitter()
+
+customEmitter.on('response',(name,id)=>{
+    console.log(`data recieved: ${name}  and  ${id}`)
+})
+
+customEmitter.on('response',()=>{
+    console.log('data not recieved')
+})
+customEmitter.emit('response','john',34)
+
+/*const http = require('http')
 
 const server = http.createServer((req,res) =>{
     console.log("Server started")
