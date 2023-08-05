@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <canvas  height="100px" id="chart"></canvas>
+    </div>
+
+
+
+    <script>
+
+        chartIt()
+
+        const xlabels = [];
+        const ylabels =[];
+
+        async function chartIt() {
+            await getData()
+            const ctx = document.getElementById('chart');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xlabels,
+                    datasets: [{
+                        label: 'Global Annual Temperature',
+                        data: ylabels,
+                        borderWidth: 1,
+                        backgroundColor:['green'],
+                        fill:true,
+                    }]
+                },
+
+            });
+
+
+            async function getData() {
+                const response = await fetch('data.csv')
+                const data = await response.text()
+
+                // console.log(data);
+
+                const rows = data.split('\n').slice(1); // can also use a regular expression
+                // console.log(rows)
+
+                rows.forEach((row => {
+                    //console.log(row)
+
+                    const cols = row.split(',')
+
+                    const year = cols[0];
+                    xlabels.push(year);
+
+                    const temp = cols[1]
+                    ylabels.push(temp)
+
+                    console.log(year, temp)
+                }))
+            }
+        }
+    </script>
+
+</body>
+
+</html>
