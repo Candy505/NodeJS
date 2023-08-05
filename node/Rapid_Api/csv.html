@@ -14,10 +14,19 @@
      const response =  await fetch('data.csv')
      const data = await response.text()
     
-      console.log(data);
+     // console.log(data);
 
-      const rows = data.split('\n'); // can also use a regular expression
-      const cols
+      const rows = data.split('\n').slice(1); // can also use a regular expression
+     // console.log(rows)
+
+      rows.forEach((row => {
+        //console.log(row)
+
+        const cols = row.split(',')
+        const year = cols[0];
+        const temp = cols[1]
+        console.log(year , temp)
+      }))
         }
        
     </script>
