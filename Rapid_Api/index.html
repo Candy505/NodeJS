@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB Search</title>
+</head>
+
+<body>
+    <h1>hey</h1>
+
+    <script>
+        async function fun() {
+            const url = 'https://indeed11.p.rapidapi.com/';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-RapidAPI-Key': 'c308b3ff5dmsh0bbf423bc38b407p1b9aadjsna8ac61f26f41',
+                    'X-RapidAPI-Host': 'indeed11.p.rapidapi.com'
+                },
+                body: JSON.stringify({
+                    search_terms: 'Developer',
+                    location: 'USA',
+                    page: '1'
+                })
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                
+                console.log(result);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Call the function to make the API request
+        fun();
+    </script>
+</body>
+
+</html>
